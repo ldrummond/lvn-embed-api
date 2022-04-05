@@ -3,11 +3,13 @@ import { HighlightPlayer } from "lvn-embed-api";
 import "./App.css";
 
 function App() {
-  const [player, setPlayer] = React.useState();
-  const [minimalPlayer, setMinimalPlayer] = React.useState();
-  const [players, setPlayers] = React.useState();
+  const [minimalPlayer, setMinimalPlayer] = React.useState<HighlightPlayer>();
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
   React.useEffect(() => {
-    setPlayer(new HighlightPlayer("embed", 161, { environment: "dev" }));
+    // Will place the embed inside the element with the given id
+    new HighlightPlayer("embed", 161, { environment: "dev" });
+    // Allows for custom
     setMinimalPlayer(
       new HighlightPlayer("embed-minimal", 161, {
         environment: "dev",
@@ -17,9 +19,19 @@ function App() {
         height: "210",
       })
     );
-    const players = [];
-    setPlayers(players);
   }, []);
+
+  const handlePlayToggle = () => {
+    if (minimalPlayer) {
+      if (minimalPlayer.isPlaying) {
+        minimalPlayer.pause();
+      } else {
+        minimalPlayer.play();
+      }
+      setIsPlaying(minimalPlayer.isPlaying);
+    }
+  };
+
   return (
     <>
       <h2>Default</h2>
@@ -33,11 +45,9 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <button
-          onClick={() => {
-            minimalPlayer && minimalPlayer.play();
-          }}
-        />
+        <button onClick={handlePlayToggle}>
+          {isPlaying ? "Pause" : "Play"}
+        </button>
         <div className="App" id="embed-minimal"></div>
       </div>
     </>

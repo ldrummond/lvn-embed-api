@@ -3,7 +3,8 @@
     "target": "ES2015",
     "module": "ES2020",
     "outDir": "lib",
-    "moduleResolution":"Node"
+    "moduleResolution":"Node",
+    "declaration": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
