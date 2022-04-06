@@ -27,6 +27,7 @@ export class HighlightPlayer {
         srcBase = PRODUCTIONBASEURL;
       }
       const highlightParam = `hid=${highlightId}`;
+      const typeParam = options?.type === "minimal" ? `&type=minimal` : "";
       const fontSizeParam = options?.fontSize
         ? `&fsz=${encodeURIComponent(options?.fontSize)}`
         : "";
@@ -36,13 +37,18 @@ export class HighlightPlayer {
       const highlightColorParam = options?.highlightColor
         ? `&hic=${encodeURIComponent(options?.highlightColor)}`
         : "";
-      const typeParam = options?.type === "minimal" ? `&type=minimal` : "";
+      const textColorParam = options?.textColor
+        ? `&txc=${encodeURIComponent(options?.textColor)}`
+        : "";
+      const backgroundColorParam = options?.backgroundColor
+        ? `&bgc=${encodeURIComponent(options?.backgroundColor)}`
+        : "";
 
       // Create Iframe
       const iframe = document.createElement("iframe");
-      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${highlightColorParam}`;
+      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${highlightColorParam}${backgroundColorParam}${textColorParam}`;
       iframe.width = options?.width ?? "100%";
-      iframe.height = options?.height ?? "100%";
+      iframe.height = options?.height ?? "270";
 
       // Enforce no scrolling and no border on the highlight
       iframe.setAttribute("scrolling", "no");

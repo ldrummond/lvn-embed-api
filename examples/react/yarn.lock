@@ -5710,9 +5710,9 @@ lru-cache@^6.0.0:
     yallist "^4.0.0"
 
 lvn-embed-api@^0.1.0:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/lvn-embed-api/-/lvn-embed-api-0.1.21.tgz#a09d7346f3ac2af0e71618478e76985a0631e675"
-  integrity sha512-jnJnldggA5QN0heUiehjA/utBXuF60Oh9r78pHk35Ahg86cI4synQyiRAsGovxhEQuSwKukT30b/q+in6VQnBQ==
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/lvn-embed-api/-/lvn-embed-api-0.1.22.tgz#5a9df59f064dae2dc3ca10b825230307f8b3ca0e"
+  integrity sha512-x3r/hymBVHvEEcUW9Yl3HFDgWoVao6sYOza2w09Env8tNefhwOPIyFGL12k03sbHK8ykL8sIEamHLnScJIRjJg==
   dependencies:
     player.js "^0.1.0"
     typescript "^4.6.3"

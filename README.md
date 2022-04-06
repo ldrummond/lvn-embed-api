@@ -10,5 +10,12 @@ To install this package, you should run
 
 ```
 import {HighlightPlayer} from 'lvn-embed-api'
-
+const player = new HighlightPlayer("embed-div-id",{HighlightOptions})
+player.play()
 ```
+
+All the functions available to use in the [player.js spec](https://github.com/embedly/player.js/blob/master/SPEC.rst) are available through this API. We also provide context on whether the player is actively playing.
+
+## Examples
+
+In the `examples` folder, there are examples of using the imbed within different environments.

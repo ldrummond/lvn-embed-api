@@ -17,13 +17,18 @@ function App() {
         src: "http://0.0.0.0:10000",
         width: "570",
         height: "210",
+        textColor: "#ffffff",
+        backgroundColor: "#494848",
+        highlightColor: "#87CB9C",
+        fontSize: "20px",
+        fontWeight: "bold",
       })
     );
   }, []);
 
   const handlePlayToggle = () => {
     if (minimalPlayer) {
-      if (minimalPlayer.isPlaying) {
+      if (minimalPlayer.getIsPlaying()) {
         minimalPlayer.pause();
       } else {
         minimalPlayer.play();
@@ -36,7 +41,7 @@ function App() {
     <>
       <h2>Default</h2>
       <div className="App" id="embed"></div>
-      <h2>Minimal</h2>
+      <h2>Minimal (Customizable)</h2>
       <div
         style={{
           display: "flex",

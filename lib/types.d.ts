@@ -5,6 +5,8 @@ export interface HighlightOptions {
     fontWeight?: string;
     fontSize?: string;
     highlightColor?: string;
+    textColor?: string;
+    backgroundColor?: string;
     environment?: "dev" | "prod";
     src?: string;
 }
