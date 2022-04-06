@@ -16,6 +16,8 @@ player.play()
 
 All the functions available to use in the [player.js spec](https://github.com/embedly/player.js/blob/master/SPEC.rst) are available through this API. We also provide context on whether the player is actively playing.
 
+Note: HighlightOptions are only enforced if `type` is equal to `"minimum"`.
+
 ## Examples
 
 In the `examples` folder, there are examples of using the imbed within different environments.
