@@ -1,11 +1,10 @@
 {
   "name": "lvn-embed-api",
-  "version": "0.1.22",
+  "version": "0.1.25",
   "description": "Wrapper to add lvn-embed with control over player and customizations.",
   "main": "lib/index.js",
   "scripts": {
-    "build": "npx tsc && npx webpack --config webpack.config.js",
-    "publish": "npm publish"
+    "build": "npx tsc && npx webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",

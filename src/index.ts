@@ -47,8 +47,14 @@ export class HighlightPlayer {
       // Create Iframe
       const iframe = document.createElement("iframe");
       iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${highlightColorParam}${backgroundColorParam}${textColorParam}`;
-      iframe.width = options?.width ?? "100%";
-      iframe.height = options?.height ?? "270";
+
+      // Default width and height to size of card, or adjust if minimal type is asked for
+      iframe.width = "570px";
+      iframe.height = "220px";
+      if (options?.type === "minimal") {
+        iframe.width = options?.width ?? "100%";
+        iframe.height = options?.height ?? "100%";
+      }
 
       // Enforce no scrolling and no border on the highlight
       iframe.setAttribute("scrolling", "no");
