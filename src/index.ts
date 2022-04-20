@@ -34,6 +34,12 @@ export class HighlightPlayer {
       const fontWeightParam = options?.fontWeight
         ? `&fwt=${encodeURIComponent(options?.fontWeight)}`
         : "";
+      const fontFamilyParam = options?.fontFamily
+        ? `&ffm=${encodeURIComponent(options?.fontFamily)}`
+        : "";
+      const italicsParam = options?.italics
+        ? `&ital=${encodeURIComponent(options?.italics)}`
+        : "";
       const highlightColorParam = options?.highlightColor
         ? `&hic=${encodeURIComponent(options?.highlightColor)}`
         : "";
@@ -43,10 +49,13 @@ export class HighlightPlayer {
       const backgroundColorParam = options?.backgroundColor
         ? `&bgc=${encodeURIComponent(options?.backgroundColor)}`
         : "";
+      const scrollingParam = options?.scrolling
+        ? `&scroll=${encodeURIComponent(options?.scrolling)}`
+        : "";
 
       // Create Iframe
       const iframe = document.createElement("iframe");
-      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${highlightColorParam}${backgroundColorParam}${textColorParam}`;
+      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}`;
 
       // Default width and height to size of card, or adjust if minimal type is asked for
       iframe.width = "570px";

@@ -20,6 +20,9 @@ function App() {
         highlightColor: "#87CB9C",
         fontSize: "20px",
         fontWeight: "bold",
+        scrolling: true,
+        fontFamily: "Oswald",
+        italics: true,
       })
     );
   }, []);
@@ -62,7 +65,7 @@ function App() {
             <button onClick={handlePlayToggle} style={{ marginRight: "1rem" }}>
               {isPlaying ? "Pause" : "Play"}
             </button>
-            <span>Tony</span>
+            <span>Darren</span>
           </div>
           <div className="App" id="embed-minimal"></div>
         </div>
