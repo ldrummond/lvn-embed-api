@@ -1,6 +1,6 @@
 {
   "name": "lvn-embed-api",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "description": "Wrapper to add lvn-embed with control over player and customizations.",
   "main": "lib/index.js",
   "scripts": {
