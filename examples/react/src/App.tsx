@@ -34,6 +34,7 @@ function App() {
       } else {
         minimalPlayer.play();
       }
+      minimalPlayer.getDuration((duration) => console.log(duration));
       setIsPlaying(minimalPlayer.isPlaying);
     }
   };

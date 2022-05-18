@@ -1,4 +1,4 @@
-import { HighlightOptions } from "./types";
+import { BooleanCallback, HighlightOptions, NumberCallback } from "./types";
 import playerjs from "player.js";
 export declare class HighlightPlayer {
     player: playerjs.Player;
@@ -9,17 +9,17 @@ export declare class HighlightPlayer {
     onLoad(e: any): void;
     play(): void;
     pause(): void;
-    getPaused(): any;
+    getPaused(callback: BooleanCallback): any;
     mute(): void;
     unmute(): void;
-    getMuted(): any;
+    getMuted(callback: BooleanCallback): any;
     setVolume(value: number): void;
-    getVolume(): any;
-    getDuration(): any;
+    getVolume(callback: NumberCallback): any;
+    getDuration(callback: NumberCallback): any;
     setCurrentTime(value: number): void;
-    getCurrentTime(): any;
+    getCurrentTime(callback: NumberCallback): any;
     setLoop(value: boolean): void;
-    getLoop(): any;
+    getLoop(callback: BooleanCallback): any;
     removeEventListener(): void;
     addEventListener(): void;
     getIsPlaying(): boolean;

@@ -1,4 +1,4 @@
-import { HighlightOptions } from "./types";
+import { BooleanCallback, HighlightOptions, NumberCallback } from "./types";
 import playerjs from "player.js";
 
 const DEVELOPMENTBASEURL = "https://origin-embed.dev.lvn.org";
@@ -102,8 +102,8 @@ export class HighlightPlayer {
     this.player.pause();
     this.isPlaying = false;
   }
-  getPaused() {
-    return this.player.getPaused();
+  getPaused(callback: BooleanCallback) {
+    return this.player.getPaused(callback);
   }
   mute() {
     this.player.mute();
@@ -111,29 +111,29 @@ export class HighlightPlayer {
   unmute() {
     this.player.unmute();
   }
-  getMuted() {
-    return this.player.getMuted();
+  getMuted(callback: BooleanCallback) {
+    return this.player.getMuted(callback);
   }
   setVolume(value: number) {
     this.player.setVolume(value);
   }
-  getVolume() {
-    return this.player.getVolume();
+  getVolume(callback: NumberCallback) {
+    return this.player.getVolume(callback);
   }
-  getDuration() {
-    return this.player.getDuration();
+  getDuration(callback: NumberCallback) {
+    return this.player.getDuration(callback);
   }
   setCurrentTime(value: number) {
     this.player.setCurrentTime(value);
   }
-  getCurrentTime() {
-    return this.player.getCurrentTime();
+  getCurrentTime(callback: NumberCallback) {
+    return this.player.getCurrentTime(callback);
   }
   setLoop(value: boolean) {
     this.player.setLoop(value);
   }
-  getLoop() {
-    return this.player.getLoop();
+  getLoop(callback: BooleanCallback) {
+    return this.player.getLoop(callback);
   }
   removeEventListener() {
     this.player.removeEventListener();

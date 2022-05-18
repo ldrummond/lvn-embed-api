@@ -22,3 +22,6 @@ type FontFamlily =
   | "Oswald"
   | "Roboto"
   | "Signika";
+
+export type NumberCallback = (value: number) => void;
+export type BooleanCallback = (value: boolean) => void;
