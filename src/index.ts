@@ -11,46 +11,53 @@ export class HighlightPlayer {
   isInitialized: boolean;
   iframe: HTMLIFrameElement;
 
-  constructor(id: string, highlightId: number, options?: HighlightOptions) {
-    const rootElement = window.document.getElementById(id);
+  constructor(options: {
+    containerId: string;
+    highlightId: number;
+    highlightOptions?: HighlightOptions;
+    onReady?: (player: playerjs.Player) => void;
+  }) {
+    const { containerId, highlightId, highlightOptions, onReady } = options;
+    const rootElement = window.document.getElementById(containerId);
     if (rootElement) {
       this.isPlaying = false;
       this.isInitialized = false;
 
       // Set values for embed
       let srcBase = "";
-      if (options?.src) {
-        srcBase = options?.src;
-      } else if (options?.environment == "dev") {
+      if (highlightOptions?.src) {
+        srcBase = highlightOptions?.src;
+      } else if (highlightOptions?.environment == "dev") {
         srcBase = DEVELOPMENTBASEURL;
       } else {
         srcBase = PRODUCTIONBASEURL;
       }
       const highlightParam = `hid=${highlightId}`;
-      const typeParam = options?.type === "minimal" ? `&type=minimal` : "";
-      const fontSizeParam = options?.fontSize
-        ? `&fsz=${encodeURIComponent(options?.fontSize)}`
+      const typeParam =
+        highlightOptions?.type === "minimal" ? `&type=minimal` : "";
+      const fontSizeParam = highlightOptions?.fontSize
+        ? `&fsz=${encodeURIComponent(highlightOptions?.fontSize)}`
         : "";
-      const fontWeightParam = options?.fontWeight
-        ? `&fwt=${encodeURIComponent(options?.fontWeight)}`
+      const fontWeightParam = highlightOptions?.fontWeight
+        ? `&fwt=${encodeURIComponent(highlightOptions?.fontWeight)}`
         : "";
-      const fontFamilyParam = options?.fontFamily
-        ? `&ffm=${encodeURIComponent(options?.fontFamily)}`
+      const fontFamilyParam = highlightOptions?.fontFamily
+        ? `&ffm=${encodeURIComponent(highlightOptions?.fontFamily)}`
         : "";
-      const italicsParam = options?.italics
-        ? `&ital=${encodeURIComponent(options?.italics)}`
+      const italicsParam = highlightOptions?.italics
+        ? `&ital=${encodeURIComponent(highlightOptions?.italics)}`
         : "";
-      const highlightColorParam = options?.highlightColor
-        ? `&hic=${encodeURIComponent(options?.highlightColor)}`
+      const highlightColorParam = highlightOptions?.highlightColor
+        ? `&hic=${encodeURIComponent(highlightOptions?.highlightColor)}`
         : "";
-      const textColorParam = options?.textColor
-        ? `&txc=${encodeURIComponent(options?.textColor)}`
+      const textColorParam = highlightOptions?.textColor
+        ? `&txc=${encodeURIComponent(highlightOptions?.textColor)}`
         : "";
-      const backgroundColorParam = options?.backgroundColor
-        ? `&bgc=${encodeURIComponent(options?.backgroundColor)}`
+      const backgroundColorParam = highlightOptions?.backgroundColor
+        ? `&bgc=${encodeURIComponent(highlightOptions?.backgroundColor)}`
         : "";
-      const scrollingParam = options?.scrolling
-        ? `&scroll=${encodeURIComponent(options?.scrolling)}`
+      const scrollingParam = highlightOptions?.scrolling
+        ? `&scroll=${encodeURIComponent(highlightOptions?.scrolling)}`
         : "";
 
       // Create Iframe
@@ -60,9 +67,9 @@ export class HighlightPlayer {
       // Default width and height to size of card, or adjust if minimal type is asked for
       iframe.width = "570px";
       iframe.height = "220px";
-      if (options?.type === "minimal") {
-        iframe.width = options?.width ?? "100%";
-        iframe.height = options?.height ?? "100%";
+      if (highlightOptions?.type === "minimal") {
+        iframe.width = highlightOptions?.width ?? "100%";
+        iframe.height = highlightOptions?.height ?? "100%";
       }
 
       // Enforce no scrolling and no border on the highlight
@@ -73,21 +80,27 @@ export class HighlightPlayer {
 
       // Inject iframe into DOM
       iframe.allow = "autoplay";
-      iframe.onload = (e) => this.onLoad(e);
+      iframe.onload = (e) => this.onLoad(e, onReady);
       this.iframe = iframe;
       rootElement.replaceChildren(iframe);
     } else {
-      console.error(`The element with id, ${id}, was not fond`);
+      console.error(`The element with id, ${containerId}, was not fond`);
     }
   }
 
   // Setting up playerJS functionality. The spect can be found here
   // https://github.com/embedly/player.js/blob/master/src/player.js
 
-  onLoad(e) {
+  onLoad(
+    e,
+    onReady: (player: playerjs.Player) => void = () => {
+      return;
+    }
+  ) {
     try {
       const player = new playerjs.Player(e.target);
       player.on("ready", () => {
+        onReady(player);
         this.isInitialized = true;
       });
       this.player = player;

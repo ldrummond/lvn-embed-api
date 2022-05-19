@@ -5,8 +5,13 @@ export declare class HighlightPlayer {
     isPlaying: boolean;
     isInitialized: boolean;
     iframe: HTMLIFrameElement;
-    constructor(id: string, highlightId: number, options?: HighlightOptions);
-    onLoad(e: any): void;
+    constructor(options: {
+        containerId: string;
+        highlightId: number;
+        highlightOptions?: HighlightOptions;
+        onReady?: (player: playerjs.Player) => void;
+    });
+    onLoad(e: any, onReady?: (player: playerjs.Player) => void): void;
     play(): void;
     pause(): void;
     getPaused(callback: (value: boolean) => void): void;

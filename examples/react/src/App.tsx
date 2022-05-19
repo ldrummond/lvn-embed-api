@@ -6,23 +6,45 @@ function App() {
   const [minimalPlayer, setMinimalPlayer] = React.useState<HighlightPlayer>();
   const [isPlaying, setIsPlaying] = React.useState(false);
 
+  const handleReady = (player) => {
+    player.on("ended", () => {
+      console.log("ended");
+    });
+    player.on("play", () => {
+      console.log("play");
+    });
+    player.on("pause", () => {
+      console.log("pause");
+    });
+    player.on("error", () => {
+      console.log("error");
+    });
+    player.on("timeupdate", () => {
+      console.log("timeupdate");
+    });
+  };
+
   React.useEffect(() => {
-    // Will place the embed inside the element with the given id
-    new HighlightPlayer("embed", 2726220);
+    new HighlightPlayer({ containerId: "embed", highlightId: 2726220 });
     // Allows for custom
     setMinimalPlayer(
-      new HighlightPlayer("embed-minimal", 2726220, {
-        type: "minimal",
-        width: "570",
-        height: "210",
-        textColor: "#ffffff",
-        backgroundColor: "#2a2a2a",
-        highlightColor: "#87CB9C",
-        fontSize: "20px",
-        fontWeight: "bold",
-        scrolling: true,
-        fontFamily: "Oswald",
-        italics: true,
+      new HighlightPlayer({
+        containerId: "embed-minimal",
+        highlightId: 2726220,
+        highlightOptions: {
+          type: "minimal",
+          width: "570",
+          height: "210",
+          textColor: "#ffffff",
+          backgroundColor: "#2a2a2a",
+          highlightColor: "#87CB9C",
+          fontSize: "20px",
+          fontWeight: "bold",
+          scrolling: true,
+          fontFamily: "Oswald",
+          italics: true,
+        },
+        onReady: handleReady,
       })
     );
   }, []);
