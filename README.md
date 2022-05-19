@@ -10,7 +10,7 @@ To install this package, you should run
 
 ```
 import {HighlightPlayer} from 'lvn-embed-api'
-const player = new HighlightPlayer("embed-div-id",{HighlightOptions})
+const player = new HighlightPlayer({containerId: "embed-div-id", highlightId: 1, highlightOptions: HighlightOptions, onReady: (player) => void})
 player.play()
 ```
 
