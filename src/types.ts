@@ -23,5 +23,11 @@ type FontFamlily =
   | "Roboto"
   | "Signika";
 
-export type NumberCallback = (value: number) => void;
-export type BooleanCallback = (value: boolean) => void;
+export type playerjsEVENTS =
+  | "ready"
+  | "play"
+  | "pause"
+  | "ended"
+  | "timeupdate"
+  | "progress"
+  | "error";

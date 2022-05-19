@@ -14,6 +14,5 @@ export interface HighlightOptions {
     src?: string;
 }
 declare type FontFamlily = "Lato" | "Merriweather" | "Montserrat" | "Open Sans" | "Oswald" | "Roboto" | "Signika";
-export declare type NumberCallback = (value: number) => void;
-export declare type BooleanCallback = (value: boolean) => void;
+export declare type playerjsEVENTS = "ready" | "play" | "pause" | "ended" | "timeupdate" | "progress" | "error";
 export {};

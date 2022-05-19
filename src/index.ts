@@ -1,4 +1,4 @@
-import { BooleanCallback, HighlightOptions, NumberCallback } from "./types";
+import { HighlightOptions, playerjsEVENTS } from "./types";
 import playerjs from "player.js";
 
 const DEVELOPMENTBASEURL = "https://origin-embed.dev.lvn.org";
@@ -81,6 +81,9 @@ export class HighlightPlayer {
     }
   }
 
+  // Setting up playerJS functionality. The spect can be found here
+  // https://github.com/embedly/player.js/blob/master/src/player.js
+
   onLoad(e) {
     try {
       const player = new playerjs.Player(e.target);
@@ -90,7 +93,7 @@ export class HighlightPlayer {
       this.player = player;
     } catch (err) {
       console.error(err);
-      console.error("This iframe is not ccompatible with playerjs");
+      console.error("This iframe is not compatible with playerjs");
     }
   }
 
@@ -102,8 +105,8 @@ export class HighlightPlayer {
     this.player.pause();
     this.isPlaying = false;
   }
-  getPaused(callback: BooleanCallback) {
-    return this.player.getPaused(callback);
+  getPaused(callback: (value: boolean) => void) {
+    this.player.getPaused(callback);
   }
   mute() {
     this.player.mute();
@@ -111,35 +114,41 @@ export class HighlightPlayer {
   unmute() {
     this.player.unmute();
   }
-  getMuted(callback: BooleanCallback) {
-    return this.player.getMuted(callback);
+  getMuted(callback: (value: boolean) => void) {
+    this.player.getMuted(callback);
   }
   setVolume(value: number) {
     this.player.setVolume(value);
   }
-  getVolume(callback: NumberCallback) {
-    return this.player.getVolume(callback);
+  getVolume(callback: (value: number) => void) {
+    this.player.getVolume(callback);
   }
-  getDuration(callback: NumberCallback) {
-    return this.player.getDuration(callback);
+  getDuration(callback: (value: number) => void) {
+    this.player.getDuration(callback);
   }
   setCurrentTime(value: number) {
     this.player.setCurrentTime(value);
   }
-  getCurrentTime(callback: NumberCallback) {
-    return this.player.getCurrentTime(callback);
+  getCurrentTime(callback: (value: number) => void) {
+    this.player.getCurrentTime(callback);
   }
   setLoop(value: boolean) {
     this.player.setLoop(value);
   }
-  getLoop(callback: BooleanCallback) {
-    return this.player.getLoop(callback);
+  getLoop(callback: (value: boolean) => void) {
+    this.player.getLoop(callback);
   }
-  removeEventListener() {
-    this.player.removeEventListener();
+  removeEventListener(event: playerjsEVENTS, callback: () => void) {
+    this.player.removeEventListener(event, callback);
   }
-  addEventListener() {
-    this.player.addEventListener();
+  addEventListener(event: playerjsEVENTS, callback: () => void) {
+    this.player.addEventListener(event, callback);
+  }
+  on(event: playerjsEVENTS, callback: () => void) {
+    this.player.on(event, callback);
+  }
+  off(event: playerjsEVENTS, callback: () => void) {
+    this.player.off(event, callback);
   }
   getIsPlaying() {
     return this.isPlaying;

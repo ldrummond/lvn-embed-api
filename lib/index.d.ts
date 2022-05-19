@@ -1,4 +1,4 @@
-import { BooleanCallback, HighlightOptions, NumberCallback } from "./types";
+import { HighlightOptions, playerjsEVENTS } from "./types";
 import playerjs from "player.js";
 export declare class HighlightPlayer {
     player: playerjs.Player;
@@ -9,18 +9,20 @@ export declare class HighlightPlayer {
     onLoad(e: any): void;
     play(): void;
     pause(): void;
-    getPaused(callback: BooleanCallback): any;
+    getPaused(callback: (value: boolean) => void): void;
     mute(): void;
     unmute(): void;
-    getMuted(callback: BooleanCallback): any;
+    getMuted(callback: (value: boolean) => void): void;
     setVolume(value: number): void;
-    getVolume(callback: NumberCallback): any;
-    getDuration(callback: NumberCallback): any;
+    getVolume(callback: (value: number) => void): void;
+    getDuration(callback: (value: number) => void): void;
     setCurrentTime(value: number): void;
-    getCurrentTime(callback: NumberCallback): any;
+    getCurrentTime(callback: (value: number) => void): void;
     setLoop(value: boolean): void;
-    getLoop(callback: BooleanCallback): any;
-    removeEventListener(): void;
-    addEventListener(): void;
+    getLoop(callback: (value: boolean) => void): void;
+    removeEventListener(event: playerjsEVENTS, callback: () => void): void;
+    addEventListener(event: playerjsEVENTS, callback: () => void): void;
+    on(event: playerjsEVENTS, callback: () => void): void;
+    off(event: playerjsEVENTS, callback: () => void): void;
     getIsPlaying(): boolean;
 }
