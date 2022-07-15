@@ -12,6 +12,7 @@ export interface HighlightOptions {
     scrolling?: boolean;
     environment?: "dev" | "prod";
     src?: string;
+    secret?: string;
 }
 declare type FontFamlily = "Lato" | "Merriweather" | "Montserrat" | "Open Sans" | "Oswald" | "Roboto" | "Signika";
 export declare type playerjsEVENTS = "ready" | "play" | "pause" | "ended" | "timeupdate" | "progress" | "error";
