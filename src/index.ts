@@ -59,10 +59,13 @@ export class HighlightPlayer {
       const scrollingParam = highlightOptions?.scrolling
         ? `&scroll=${encodeURIComponent(highlightOptions?.scrolling)}`
         : "";
+      const secretParam = highlightOptions?.secret
+        ? `&secret=${encodeURIComponent(highlightOptions?.secret)}`
+        : "";
 
       // Create Iframe
       const iframe = document.createElement("iframe");
-      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}`;
+      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}${secretParam}`;
 
       // Default width and height to size of card, or adjust if minimal type is asked for
       iframe.width = "570px";

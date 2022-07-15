@@ -12,6 +12,7 @@ export interface HighlightOptions {
   scrolling?: boolean;
   environment?: "dev" | "prod";
   src?: string;
+  secret?: string;
 }
 
 type FontFamlily =
