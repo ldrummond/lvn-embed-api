@@ -3,7 +3,7 @@ import playerjs from "player.js";
 
 const DEVELOPMENTBASEURL = "https://origin-embed.dev.lvn.org";
 
-const PRODUCTIONBASEURL = "https://origin-embed.lvn.org";
+const PRODUCTIONBASEURL = "https://embed.lvn.org";
 
 export class HighlightPlayer {
   player: playerjs.Player;
