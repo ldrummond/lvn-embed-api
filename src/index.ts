@@ -1,7 +1,7 @@
 import { HighlightOptions, playerjsEVENTS } from "./types";
 import playerjs from "player.js";
 
-const DEVELOPMENTBASEURL = "https://origin-embed.dev.lvn.org";
+const DEVELOPMENTBASEURL = "https://origin-embed.lvn.dev";
 
 const PRODUCTIONBASEURL = "https://embed.lvn.org";
 
@@ -62,10 +62,13 @@ export class HighlightPlayer {
       const secretParam = highlightOptions?.secret
         ? `&secret=${encodeURIComponent(highlightOptions?.secret)}`
         : "";
+      const audioControlsParam = highlightOptions?.audioControls
+        ? `&act=${encodeURIComponent(highlightOptions?.audioControls)}`
+        : "";
 
       // Create Iframe
       const iframe = document.createElement("iframe");
-      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}${secretParam}`;
+      iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}${secretParam}${audioControlsParam}`;
 
       // Default width and height to size of card, or adjust if minimal type is asked for
       iframe.width = "570px";

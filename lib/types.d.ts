@@ -10,6 +10,7 @@ export interface HighlightOptions {
     textColor?: string;
     backgroundColor?: string;
     scrolling?: boolean;
+    audioControls?: boolean;
     environment?: "dev" | "prod";
     src?: string;
     secret?: string;
