@@ -43,6 +43,7 @@ function App() {
           scrolling: true,
           fontFamily: "Oswald",
           italics: true,
+          audioControls: true,
         },
         onReady: handleReady,
       })
