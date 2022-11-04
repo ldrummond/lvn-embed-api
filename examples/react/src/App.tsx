@@ -25,13 +25,42 @@ function App() {
   };
 
   React.useEffect(() => {
-    new HighlightPlayer({ containerId: "embed", highlightId: 2726220 });
+    // new HighlightPlayer({ containerId: "embed", highlightId: 2726220 });
+    // // Allows for custom
+    // setMinimalPlayer(
+    //   new HighlightPlayer({
+    //     containerId: "embed-minimal",
+    //     highlightId: 2726220,
+    //     highlightOptions: {
+    //       type: "minimal",
+    //       width: "570",
+    //       height: "210",
+    //       textColor: "#ffffff",
+    //       backgroundColor: "#2a2a2a",
+    //       highlightColor: "#87CB9C",
+    //       fontSize: "20px",
+    //       fontWeight: "bold",
+    //       scrolling: true,
+    //       fontFamily: "Oswald",
+    //       italics: true,
+    //       audioControls: true,
+    //     },
+    //     onReady: handleReady,
+    //   })
+    // );
+    // Dev Testing
+    new HighlightPlayer({
+      containerId: "embed",
+      highlightId: 1001,
+      highlightOptions: { environment: "dev" },
+    });
     // Allows for custom
     setMinimalPlayer(
       new HighlightPlayer({
         containerId: "embed-minimal",
-        highlightId: 2726220,
+        highlightId: 1001,
         highlightOptions: {
+          environment: "dev",
           type: "minimal",
           width: "570",
           height: "210",
