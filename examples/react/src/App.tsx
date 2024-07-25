@@ -52,7 +52,7 @@ function App() {
     new HighlightPlayer({
       containerId: "embed",
       highlightId: 1001,
-      highlightOptions: { environment: "dev" },
+      highlightOptions: { src: "https://origin-embed.fora-dev.io/" },
     });
     // Allows for custom
     setMinimalPlayer(
@@ -60,7 +60,6 @@ function App() {
         containerId: "embed-minimal",
         highlightId: 1001,
         highlightOptions: {
-          environment: "dev",
           type: "minimal",
           width: "570",
           height: "210",
@@ -73,6 +72,7 @@ function App() {
           fontFamily: "Oswald",
           italics: true,
           audioControls: true,
+          src: "https://origin-embed.fora-dev.io/",
         },
         onReady: handleReady,
       })
