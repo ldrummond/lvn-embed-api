@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fora highlight embed example</title>
+    <meta
+      name="description"
+      content="An example of using Fora highlight embeds in vanilla JS"
+    />
+    <meta name="author" content="Cortico" />
+
+    <meta property="og:title" content="Fora highlight embed example" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="localhost" />
+    <meta
+      property="og:description"
+      content="An example of using Fora highlight embeds in vanilla JS"
+    />
+    <meta property="og:image" content="image.png" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0" />
+
+    <!-- This is Required for the class to work-->
+
+    <script
+      type="text/javascript"
+      src="https://cdn.embed.ly/player-0.1.0.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <!-- your content here... -->
+    <div id="embed"></div>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          border: 2px solid #87cb9c;
+          padding: 2rem;
+          padding-bottom: 0;
+          border-radius: 8px;
+          background-color: #2a2a2a;
+          color: #ffffff;
+        "
+      >
+        <div style="margin-bottom: 1rem">
+          <button onClick="onclickplay_event()" style="margin-right: 1rem">
+            Play
+          </button>
+          <span>Darren</span>
+        </div>
+        <div id="embed-minimal"></div>
+      </div>
+    </div>
+
+    <!-- your scripts here -->
+    <script type="text/javascript">
+      window.HighlightPlayer = class HighlightPlayer {
+        constructor(options) {
+          var _a, _b;
+          const { containerId, highlightId, highlightOptions, onReady } =
+            options;
+          const rootElement = window.document.getElementById(containerId);
+          if (rootElement) {
+            this.isPlaying = false;
+            this.isInitialized = false;
+            // Set values for embed
+            let srcBase = "";
+            if (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.src
+            ) {
+              srcBase =
+                highlightOptions === null || highlightOptions === void 0
+                  ? void 0
+                  : highlightOptions.src;
+            } else if (
+              (highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.environment) == "dev"
+            ) {
+              srcBase = DEVELOPMENTBASEURL;
+            } else {
+              srcBase = PRODUCTIONBASEURL;
+            }
+            const highlightParam = `hid=${highlightId}`;
+            const typeParam =
+              (highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.type) === "minimal"
+                ? `&type=minimal`
+                : "";
+            const fontSizeParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.fontSize
+            )
+              ? `&fsz=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.fontSize
+                )}`
+              : "";
+            const fontWeightParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.fontWeight
+            )
+              ? `&fwt=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.fontWeight
+                )}`
+              : "";
+            const fontFamilyParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.fontFamily
+            )
+              ? `&ffm=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.fontFamily
+                )}`
+              : "";
+            const italicsParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.italics
+            )
+              ? `&ital=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.italics
+                )}`
+              : "";
+            const highlightColorParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.highlightColor
+            )
+              ? `&hic=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.highlightColor
+                )}`
+              : "";
+            const textColorParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.textColor
+            )
+              ? `&txc=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.textColor
+                )}`
+              : "";
+            const backgroundColorParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.backgroundColor
+            )
+              ? `&bgc=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.backgroundColor
+                )}`
+              : "";
+            const scrollingParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.scrolling
+            )
+              ? `&scroll=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.scrolling
+                )}`
+              : "";
+            const secretParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.secret
+            )
+              ? `&secret=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.secret
+                )}`
+              : "";
+            const audioControlsParam = (
+              highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.audioControls
+            )
+              ? `&act=${encodeURIComponent(
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.audioControls
+                )}`
+              : "";
+            // Create Iframe
+            const iframe = document.createElement("iframe");
+            iframe.src = `${srcBase}/?${highlightParam}${typeParam}${fontSizeParam}${fontWeightParam}${fontFamilyParam}${italicsParam}${highlightColorParam}${backgroundColorParam}${textColorParam}${scrollingParam}${secretParam}${audioControlsParam}`;
+            // Default width and height to size of card, or adjust if minimal type is asked for
+            iframe.width = "570px";
+            iframe.height = "220px";
+            if (
+              (highlightOptions === null || highlightOptions === void 0
+                ? void 0
+                : highlightOptions.type) === "minimal"
+            ) {
+              iframe.width =
+                (_a =
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.width) !== null && _a !== void 0
+                  ? _a
+                  : "100%";
+              iframe.height =
+                (_b =
+                  highlightOptions === null || highlightOptions === void 0
+                    ? void 0
+                    : highlightOptions.height) !== null && _b !== void 0
+                  ? _b
+                  : "100%";
+            }
+            // Enforce no scrolling and no border on the highlight
+            iframe.setAttribute("scrolling", "no");
+            iframe.setAttribute("frameBoarder", "0");
+            iframe.style.border = "none";
+            iframe.style.overflow = "hidden";
+            // Inject iframe into DOM
+            iframe.allow = "autoplay";
+            iframe.onload = (e) => this.onLoad(e, onReady);
+            this.iframe = iframe;
+            rootElement.replaceChildren(iframe);
+          } else {
+            console.error(`The element with id, ${containerId}, was not fond`);
+          }
+        }
+        // Setting up playerJS functionality. The spect can be found here
+        // https://github.com/embedly/player.js/blob/master/src/player.js
+        onLoad(
+          e,
+          onReady = () => {
+            return;
+          }
+        ) {
+          try {
+            const player = new playerjs.Player(e.target);
+            player.on("ready", () => {
+              onReady(player);
+              this.isInitialized = true;
+            });
+            this.player = player;
+          } catch (err) {
+            console.error(err);
+            console.error("This iframe is not compatible with playerjs");
+          }
+        }
+        play() {
+          this.player.play();
+          this.isPlaying = true;
+        }
+        pause() {
+          this.player.pause();
+          this.isPlaying = false;
+        }
+        getPaused(callback) {
+          this.player.getPaused(callback);
+        }
+        mute() {
+          this.player.mute();
+        }
+        unmute() {
+          this.player.unmute();
+        }
+        getMuted(callback) {
+          this.player.getMuted(callback);
+        }
+        setVolume(value) {
+          this.player.setVolume(value);
+        }
+        getVolume(callback) {
+          this.player.getVolume(callback);
+        }
+        getDuration(callback) {
+          this.player.getDuration(callback);
+        }
+        setCurrentTime(value) {
+          this.player.setCurrentTime(value);
+        }
+        getCurrentTime(callback) {
+          this.player.getCurrentTime(callback);
+        }
+        setLoop(value) {
+          this.player.setLoop(value);
+        }
+        getLoop(callback) {
+          this.player.getLoop(callback);
+        }
+        removeEventListener(event, callback) {
+          this.player.removeEventListener(event, callback);
+        }
+        addEventListener(event, callback) {
+          this.player.addEventListener(event, callback);
+        }
+        on(event, callback) {
+          this.player.on(event, callback);
+        }
+        off(event, callback) {
+          this.player.off(event, callback);
+        }
+        getIsPlaying() {
+          return this.isPlaying;
+        }
+      };
+      window.highlightPlayers = {};
+    </script>
+
+    <script type="text/javascript">
+      const embed = new window.HighlightPlayer({
+        containerId: "embed",
+        highlightId: 1001,
+        highlightOptions: { src: "https://origin-embed.fora-dev.io/" },
+      });
+      window.highlightPlayers[embed] = embed;
+    </script>
+
+    <script type="text/javascript">
+      const handleReady = (player) => {
+        player.on("ended", () => {
+          console.log("ended");
+        });
+        player.on("play", () => {
+          console.log("play");
+        });
+        player.on("pause", () => {
+          console.log("pause");
+        });
+        player.on("error", () => {
+          console.log("error");
+        });
+        player.on("timeupdate", () => {
+          console.log("timeupdate");
+        });
+      };
+
+      const embedMinimal = new HighlightPlayer({
+        containerId: "embed-minimal",
+        highlightId: 1001,
+        highlightOptions: {
+          type: "minimal",
+          width: "570",
+          height: "210",
+          textColor: "#ffffff",
+          backgroundColor: "#2a2a2a",
+          highlightColor: "#87CB9C",
+          fontSize: "20px",
+          fontWeight: "bold",
+          scrolling: true,
+          fontFamily: "Oswald",
+          italics: true,
+          audioControls: true,
+          src: "https://origin-embed.fora-dev.io/",
+        },
+        onReady: handleReady,
+      });
+
+      window.highlightPlayers[embedMinimal] = embedMinimal;
+      function onclickplay_event() {
+        embedMinimal.play();
+      }
+    </script>
+  </body>
+</html>
