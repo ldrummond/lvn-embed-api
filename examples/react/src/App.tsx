@@ -72,7 +72,8 @@ function App() {
           fontFamily: "Oswald",
           italics: true,
           audioControls: true,
-          src: "https://origin-embed.fora-dev.io/",
+          environment: "prod",
+          src: "https://embed.lvn.org/",
         },
         onReady: handleReady,
       })
