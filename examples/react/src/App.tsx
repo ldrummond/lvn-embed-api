@@ -49,16 +49,16 @@ function App() {
     //   })
     // );
     // Dev Testing
-    new HighlightPlayer({
-      containerId: "embed",
-      highlightId: 1001,
-      highlightOptions: { src: "https://origin-embed.fora-dev.io/" },
-    });
+    // new HighlightPlayer({
+    //   containerId: "embed",
+    //   highlightId: 1001,
+    //   highlightOptions: { src: "https://origin-embed.fora-dev.io/" },
+    // });
     // Allows for custom
     setMinimalPlayer(
       new HighlightPlayer({
         containerId: "embed-minimal",
-        highlightId: 1001,
+        highlightId: 5247318,
         highlightOptions: {
           type: "minimal",
           width: "570",
