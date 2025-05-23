@@ -5,8 +5,11 @@ import "./App.css";
 function App() {
   const [minimalPlayer, setMinimalPlayer] = React.useState<HighlightPlayer>();
   const [isPlaying, setIsPlaying] = React.useState(false);
+  console.log("render");
 
   const handleReady = (player) => {
+    console.log("handle ready");
+
     player.on("ended", () => {
       console.log("ended");
     });
@@ -25,6 +28,7 @@ function App() {
   };
 
   React.useEffect(() => {
+    console.log("use effect");
     // new HighlightPlayer({ containerId: "embed", highlightId: 2726220 });
     // // Allows for custom
     // setMinimalPlayer(
